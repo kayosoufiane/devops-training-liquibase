@@ -39,7 +39,7 @@ script:
     - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;"
       
     # Test PhpMyAdmin on Database Init
-    - curl http://127.0.0.1:8081/ | grep -q 'liquidb'
+    - curl http://127.0.0.1:8081/ | grep -q liquidb
 
     # Test PhpMyAdmin on Database All
-    - curl http://127.0.0.1:8082/ | grep -q 'liquidb'
+    - curl http://127.0.0.1:8082/ | grep -q liquidb
