@@ -14,10 +14,15 @@ script:
     # Wait to databases start
     - sleep 5
 
+    # Chech the initial state
+    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;"
+    - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;"
+
     # Run Version 1 - on Database Init (related to contexts)
     - docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_init_1.sh"'
 
     # Check the modifications
+    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "desc person;"
     - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;"
     - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q person
 
@@ -25,8 +30,8 @@ script:
     - docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_init_2.sh"'
 
     # Check the modifications
-    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "select * from person;"
-    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "select * from person;" | grep -q username
+    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "desc person;"
+    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "desc person;" | grep -q username
 
     # Run Version 1 - on Database All (related to contexts)
     - docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_all_1.sh"'
