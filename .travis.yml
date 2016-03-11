@@ -33,15 +33,15 @@ script:
 
     # Check the modifications
     - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;"
-    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q DATABASECHANGELOG
-    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q DATABASECHANGELOGLOCK
+    - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q DATABASECHANGELOG
+    - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q DATABASECHANGELOGLOCK
 
     # Run Version 2 - on Database All (related to contexts)
     - docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_all_2.sh"'
 
     # Check the modifications
     - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;"
-    - docker exec -it mysql.init mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q state
+    - docker exec -it mysql.all mysql -u liquiuser -pliquipw liquidb -e "show tables;" | grep -q state
 
     # Test PhpMyAdmin on Database Init
     - curl http://127.0.0.1:8081/ | grep -q liquidb
