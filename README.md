@@ -1,5 +1,6 @@
 # DevOps Training - Liquibase - Practical - using Docker compose
 
+[![Build Status](https://travis-ci.org/ykandrirody/devops-training-liquibase.svg?branch=master)](https://travis-ci.org/ykandrirody/devops-training-liquibase)
 
 ## Usage
 
