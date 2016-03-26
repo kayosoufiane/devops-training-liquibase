@@ -4,7 +4,7 @@
 
 ## Usage
 
-### Start all services
+###  1 - Start all services
 
 ```
 cd devops-training-liquibase
@@ -12,11 +12,11 @@ cd devops-training-liquibase
 docker-compose up -d
 ```
 
-### Test phpmyadmin :
+###  2 - Test phpmyadmin :
 http://localhost:8081/
 http://localhost:8082/
 
-### Run Liquibase
+### 3 - Run Liquibase
 ```
 docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_init_1.sh"'
 docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_init_2.sh"'
@@ -25,7 +25,7 @@ docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_all_2.sh"'
 ```
 
 
-### Deallocate resources
+### 4 - Deallocate resources
 ```
 docker-compose kill
 docker-compose rm
