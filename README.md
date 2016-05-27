@@ -30,3 +30,4 @@ docker exec -it myliqui.global bash -c 'cd $BUILDENV; exec "/app/run_all_2.sh"'
 docker-compose kill
 docker-compose rm
 ```
+
